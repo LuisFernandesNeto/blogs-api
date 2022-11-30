@@ -1,6 +1,8 @@
 const express = require('express');
 const login = require('./controllers/login');
 const createUser = require('./controllers/createUser');
+const getUsers = require('./controllers/getUsers');
+const validateJWT = require('./middlewares/validateJWT');
 
 const app = express();
 
@@ -10,6 +12,7 @@ app.use(express.json());
 
 app.post('/login', login);
 app.post('/user', createUser);
+app.get('/user', validateJWT, getUsers);
 
 // ...
 
