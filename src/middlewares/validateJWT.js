@@ -17,9 +17,11 @@ module.exports = async (req, res, next) => {
 
     const users = await UserService.getUsers(decoded);
 
-    if (!users) {
+    /* if (!users) {
         return res.status(401).json({ message: 'Expired or invalid token' });
-    }
+    } */
+
+    req.user = users;
 
     next();
    } catch (err) {
