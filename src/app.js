@@ -3,6 +3,7 @@ const login = require('./controllers/login');
 const createUser = require('./controllers/createUser');
 const getUsers = require('./controllers/getUsers');
 const validateJWT = require('./middlewares/validateJWT');
+const getUserById = require('./controllers/getUserById');
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(express.json());
 app.post('/login', login);
 app.post('/user', createUser);
 app.get('/user', validateJWT, getUsers);
+app.get('/user/:id', validateJWT, getUserById);
 
 // ...
 
