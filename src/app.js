@@ -6,6 +6,7 @@ const validateJWT = require('./middlewares/validateJWT');
 const getUserById = require('./controllers/getUserById');
 const addCategory = require('./controllers/addCategory');
 const getCategories = require('./controllers/getCategories');
+const addPost = require('./controllers/addPost');
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.get('/user', validateJWT, getUsers);
 app.get('/user/:id', validateJWT, getUserById);
 app.post('/categories', validateJWT, addCategory);
 app.get('/categories', validateJWT, getCategories);
+app.post('/post', validateJWT, addPost);
 
 // ...
 

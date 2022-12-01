@@ -2,7 +2,6 @@
 const jwt = require('jsonwebtoken');
 
 require('dotenv/config');
-const UserService = require('../services/userService');
 
 const secret = process.env.JWT_SECRET || 'xablau';
 
@@ -19,9 +18,9 @@ module.exports = async (req, res, next) => {
 
     req.user = users; */
 
-    const userById = await UserService.getUserById(decoded.data.userId);
+    /* const userById = await UserService.getUserById(decoded.data.userId); */
 
-    req.user = userById;
+    req.user = decoded;
 
     next();
    } catch (err) {
