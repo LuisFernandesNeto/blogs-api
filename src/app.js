@@ -8,6 +8,7 @@ const addCategory = require('./controllers/addCategory');
 const getCategories = require('./controllers/getCategories');
 const addPost = require('./controllers/addPost');
 const getAllPosts = require('./controllers/getAllPosts');
+const getPostById = require('./controllers/getPostById');
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.post('/categories', validateJWT, addCategory);
 app.get('/categories', validateJWT, getCategories);
 app.post('/post', validateJWT, addPost);
 app.get('/post', validateJWT, getAllPosts);
+app.get('/post/:id', validateJWT, getPostById);
 
 // ...
 
