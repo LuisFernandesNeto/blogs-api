@@ -3,7 +3,7 @@ const CategoryService = require('../services/categoryService');
 
 module.exports = async (req, res) => {
     const { title, content, categoryIds } = req.body;
-    const { userId } = req.user.data;
+    const { id } = req.user.dataValues;
 
     if (!title || !content || categoryIds.length === 0) {
         return res.status(400).json({ message: 'Some required fields are missing' });
@@ -15,13 +15,13 @@ module.exports = async (req, res) => {
         c.dataValues.id
     ));
 
-    const check = categoryIds.every((id) => allCategories.includes(id));
+    const check = categoryIds.every((category) => allCategories.includes(category));
 
     if (!check) {
         return res.status(400).json({ message: 'one or more "categoryIds" not found' });
     }
 
-    const post = await BlogPostService.addPost({ title, content, userId, categoryIds });
+    const post = await BlogPostService.addPost({ title, content, userId: id, categoryIds });
 
     return res.status(201).json(post);
 };
